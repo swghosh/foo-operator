@@ -7,4 +7,14 @@ layout:
 - go.kubebuilder.io/v4
 projectName: foo-operator
 repo: github.com/swghosh/foo-operator
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: codecrafts.cf
+  group: example
+  kind: FooManager
+  path: github.com/swghosh/foo-operator/api/v1
+  version: v1
 version: "3"
