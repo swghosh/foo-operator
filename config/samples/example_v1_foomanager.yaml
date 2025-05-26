@@ -1,9 +1,18 @@
 apiVersion: example.codecrafts.cf/v1
 kind: FooManager
 metadata:
-  labels:
-    app.kubernetes.io/name: foo-operator
-    app.kubernetes.io/managed-by: kustomize
-  name: foomanager-sample
-spec:
-  # TODO(user): Add fields here
+  name: default
+  namespace: default
+spec: 
+  useIn: deployer
+  templateSpec:
+    containers:
+    - name: foo-app
+      image: docker.io/qlijin/gcr.io_google-containers_pause-arm64:3.2
+      resources:
+        limits:
+          memory: "32Mi"
+          cpu: "100m"
+        requests:
+          memory: "32Mi"
+          cpu: "100m"

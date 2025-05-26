@@ -17,25 +17,35 @@ limitations under the License.
 package v1
 
 import (
+	appsv1 "k8s.io/api/apps/v1"
+	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
-// NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
-
 // FooManagerSpec defines the desired state of FooManager.
 type FooManagerSpec struct {
-	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
+	// UseIn is an example field that decides what we use for :x
+	UseIn string `json:"useIn,omitempty"`
 
-	// Foo is an example field of FooManager. Edit foomanager_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	// Template for pods in the deployment
+	// +optional
+	TemplateSpec *corev1.PodSpec `json:"templateSpec,omitempty"`
 }
 
 // FooManagerStatus defines the observed state of FooManager.
 type FooManagerStatus struct {
-	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
-	// Important: Run "make" to regenerate code after modifying this file
+	// WasUsedFor reports what this field was last used for :x
+	WasUsedFor string `json:"wasUsedFor"`
+
+	// LastTransitionTime time when we last observed a change
+	LastTransitionTime *metav1.Time `json:"lastTransitionTime"`
+
+	// WeirdReport of deployment
+	WeirdReport string `json:"weirdReport,omitempty"`
+
+	// DeploymentStatus
+	// +optional
+	DeploymentStatus *appsv1.DeploymentStatus `json:"deploymentStatus,omitempty"`
 }
 
 // +kubebuilder:object:root=true
